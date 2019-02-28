@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Motorapido.Views.ViagensPage" Title="Viagens" x:Name="ViagensItemsPage">
+    
+    
+ <ContentPage.Content>
+   
+        
+  <StackLayout>
+            
+     <ActivityIndicator x:Name="actInd"
+                             IsRunning="false" Margin="5,5,5,5"
+                             IsVisible="false" Color="Blue"/>
+            
+    <WebView x:Name="Browser" VerticalOptions="FillAndExpand" />
+</StackLayout>
+        
+        
+        
+    </ContentPage.Content>
+    
+    
+    
+</ContentPage>
