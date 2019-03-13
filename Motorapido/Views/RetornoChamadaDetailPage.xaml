@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Motorapido.Views.RetornoChamadaDetailPage"
+             Title="{Binding Title}">
+            
+      <StackLayout Spacing="20" Padding="15">
+        
+        <Label Text="{Binding RetornoChamada.dataChamada, StringFormat='Data da Chamada: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+                
+        <Label Text="{Binding RetornoChamada.destino, StringFormat='Destino: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+        
+        <Label Text="{Binding RetornoChamada.origem, StringFormat='Origem: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+        
+        <Label Text="{Binding RetornoChamada.valor, StringFormat='Valor: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+        
+        <Label Text="{Binding RetornoChamada.codChamada, StringFormat='Código da Chamada: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+        
+        <Label Text="{Binding RetornoChamada.placaVeiculo, StringFormat='Placa do Veículo: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+        
+        <Label Text="{Binding RetornoChamada.corVeiculo, StringFormat='Cor do Veículo: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+        
+      
+        <Label Text="{Binding RetornoChamada.modeloVeiculo, StringFormat='Modelo do Veículo: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+        
+        <Label Text="{Binding RetornoChamada.nomeMotorista, StringFormat='Nome do Motorista: {0}' }"
+        LineBreakMode="WordWrap"
+        Style="{DynamicResource ListItemDetailTextStyle}"
+        FontSize="16"  />
+
+       
+
+    </StackLayout>
+</ContentPage>

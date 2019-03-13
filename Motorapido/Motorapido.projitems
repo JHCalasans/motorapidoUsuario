@@ -17,6 +17,26 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ViagensPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HistóricoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\RecomendarPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\RetornoChamadaDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChamadaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -55,6 +75,27 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ViagensPage.xaml.cs">
       <DependentUpon>ViagensPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HistóricoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HistóricoPage.xaml.cs">
+      <DependentUpon>HistóricoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Historico.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecomendarViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RecomendarPage.xaml.cs">
+      <DependentUpon>RecomendarPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Chamada.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RetornoChamada.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RetornoChamadaDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RetornoChamadaDetailPage.xaml.cs">
+      <DependentUpon>RetornoChamadaDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ChamadaPage.xaml.cs">
+      <DependentUpon>ChamadaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

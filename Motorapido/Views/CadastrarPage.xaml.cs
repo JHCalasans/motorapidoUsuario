@@ -66,6 +66,15 @@ namespace Motorapido.Views
 
                 }
 
+
+            else
+
+                {
+
+                DisplayAlert("Ops!", response.StatusCode.ToString(), "Ok");
+
+                }
+
             }
 
 

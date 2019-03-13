@@ -27,14 +27,21 @@ namespace Motorapido.Views
                 switch (id)
                     {
               
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                    case (int)MenuItemType.Login:
+                        MenuPages.Add(id, new NavigationPage(new LoginPage()));
                         break;
                     case (int)MenuItemType.Cadastrar:
                         MenuPages.Add(id, new NavigationPage(new CadastrarPage()));
                         break;
                     case (int)MenuItemType.Viagens:
                         MenuPages.Add(id, new NavigationPage(new ViagensPage()));
+                        break;
+                    case (int)MenuItemType.Histórico:
+                        MenuPages.Add(id, new NavigationPage(new HistóricoPage()));
+                        break;
+
+                    case (int)MenuItemType.Recomendar:
+                        MenuPages.Add(id, new NavigationPage(new RecomendarPage()));
                         break;
                     }
                 }

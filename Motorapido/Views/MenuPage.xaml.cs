@@ -19,9 +19,11 @@ namespace Motorapido.Views
             menuItems = new List<HomeMenuItem>
             {
               
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
+                new HomeMenuItem {Id = MenuItemType.Login, Title="Login" },
                 new HomeMenuItem {Id = MenuItemType.Cadastrar, Title="Cadastrar" },
                 new HomeMenuItem {Id = MenuItemType.Viagens, Title="Viagens" },
+                new HomeMenuItem {Id = MenuItemType.Histórico, Title="Histórico" },
+                new HomeMenuItem {Id = MenuItemType.Recomendar, Title="Compartilhar" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

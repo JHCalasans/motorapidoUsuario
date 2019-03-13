@@ -22,7 +22,7 @@ namespace Motorapido
             {
             InitializeComponent();
 
-
+        
             if (Preferences.Get("Cadastrado", "default_value") != "true")
 
                 {
@@ -63,9 +63,8 @@ AppCenter.Start("android=5dca6bb3-5142-41a7-bb54-23790a0fcfd6;" + "uwp={Your UWP
     async Task GPS()
         {
 
-
-        var request = new GeolocationRequest(GeolocationAccuracy.Best);
-        location = await Geolocation.GetLocationAsync(request);
+            var request = new GeolocationRequest(GeolocationAccuracy.Best);
+            location = await Geolocation.GetLocationAsync(request);
 
         }
 

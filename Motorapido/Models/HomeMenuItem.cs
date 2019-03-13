@@ -7,18 +7,19 @@ namespace Motorapido.Models
     public enum MenuItemType
         {
 
-        About, 
+        Login, 
         Cadastrar,
-        Viagens
+        Viagens,
+        Histórico,
+        Recomendar
         }
+
     public class HomeMenuItem
         {
         public MenuItemType Id { get; set; }
 
         public string Title { get; set; }
 
-       public string Image { get; set; }
-
-
+        public string Image { get; set; }
         }
     }

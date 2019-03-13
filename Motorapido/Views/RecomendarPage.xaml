@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Motorapido.Views.RecomendarPage"
+             xmlns:vm="clr-namespace:Motorapido.ViewModels"
+             Title="{Binding Title}">
+    
+
+     <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
+ 
+    <Label Text="Gostou do nosso App? Então compartilhe com seus amigos e familiares..." FontSize="Medium" HorizontalTextAlignment="Center" />
+    <Button x:Name="share" Margin="5,5,5,5" Text="Compartilhar o App Motorapido" Command="{Binding OpenWebCommand}" />
+        
+    
+        </StackLayout>
+</ContentPage>
+
+
+
+
+          

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Motorapido.Views.ChamadaPage" Title="Chamada" >
+    <ContentPage.Content>
+        
+        <StackLayout Padding="10" Spacing="10">
+            
+            
+               <Label Text="Origem" FontSize="Medium" />
+               <Label x:Name="Origem" FontSize="Medium" LineBreakMode="WordWrap" />
+               <Label Text="Destino" FontSize="Medium" />
+               <Label x:Name="Destino" FontSize="Medium" LineBreakMode="WordWrap" />
+               <Label Text="Minutos" FontSize="Medium" />
+               <Label x:Name="Minutos" FontSize="Medium" LineBreakMode="WordWrap" />
+               <Label Text="Kms" FontSize="Medium" />
+               <Label x:Name="Kms" FontSize="Medium" LineBreakMode="WordWrap" />
+         
+
+            <Label Text="Observação" FontSize="Medium" />
+         
+            <Entry x:Name="Observação" Placeholder="" />
+            
+            <Button x:Name="Chamar" Margin="5,5,5,5" Text="Chamar" Clicked="Chamar_Clicked" />
+        
+        
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
