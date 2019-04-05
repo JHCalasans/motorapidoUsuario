@@ -10,6 +10,7 @@ namespace Motorapido.Models
         public string numeroTelefone { get; set; }
         public string senha { get; set; }
         public byte [] foto { get; set; }
-        }
+        public Int64 codBinarioFoto { get; set; }
+    }
         
     }
