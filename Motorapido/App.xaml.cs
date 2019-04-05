@@ -10,6 +10,7 @@ using System.Net;
 using System.Xml;
 using Motorapido.Views;
 using System.Xml.Linq;
+using Plugin.Media;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Motorapido
@@ -22,7 +23,11 @@ namespace Motorapido
             {
             InitializeComponent();
 
-        
+
+            CrossMedia.Current.Initialize();
+
+      
+
             if (Preferences.Get("Cadastrado", "default_value") != "true")
 
                 {
@@ -47,32 +52,40 @@ namespace Motorapido
             {
             // Handle when your app starts
 
-AppCenter.Start("android=5dca6bb3-5142-41a7-bb54-23790a0fcfd6;" + "uwp={Your UWP App secret here};" + "ios={Your iOS App secret here}", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start("android=5dca6bb3-5142-41a7-bb54-23790a0fcfd6;"
+            + "uwp={Your UWP App secret here};"
+            + "ios={Your iOS App secret here}", typeof(Analytics), typeof(Crashes));
 
             await GPS();
 
-     
 
-        
-             
+    
+
             }
 
 
-          
-
-    async Task GPS()
-        {
-
-            var request = new GeolocationRequest(GeolocationAccuracy.Best);
-            location = await Geolocation.GetLocationAsync(request);
-
-        }
 
 
+        async Task GPS()
+            {
+
+
+            try
+                {
+                var request = new GeolocationRequest(GeolocationAccuracy.Best);
+                location = await Geolocation.GetLocationAsync(request);
+                }
+
+            catch
+                {
+
+                }
+            }
 
 
 
-    protected override void OnSleep()
+
+        protected override void OnSleep()
             {
             // Handle when your app sleeps
             }

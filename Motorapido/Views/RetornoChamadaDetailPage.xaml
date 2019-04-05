@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Motorapido.Views.RetornoChamadaDetailPage"
              Title="{Binding Title}">
-            
+      <ScrollView>     
       <StackLayout Spacing="20" Padding="15">
         
         <Label Text="{Binding RetornoChamada.dataChamada, StringFormat='Data da Chamada: {0}' }"
@@ -55,4 +55,5 @@
        
 
     </StackLayout>
+    </ScrollView>
 </ContentPage>

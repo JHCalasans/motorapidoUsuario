@@ -7,22 +7,26 @@ using Newtonsoft.Json;
 using System.Text;
 using System.Net.Http;
 using Xamarin.Essentials;
-
-
+using Plugin.Media;
+using System.Collections.Generic;
+using Plugin.FileUploader;
+using Plugin.FileUploader.Abstractions;
+using System.IO;
 
 namespace Motorapido.Views
     {
 
-
- 
+   
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CadastrarPage : ContentPage
         {
 
-     async void Cadastrar_Clicked(object sender, System.EventArgs e)
+     
+        byte[] imagem = new byte [] { };
+
+        async void Cadastrar_Clicked(object sender, System.EventArgs e)
+
             {
-
-
 
 
          //  Preferences.Set("Cadastrado", "true");
@@ -36,7 +40,9 @@ namespace Motorapido.Views
                 email = Email.Text,
                 numeroTelefone = Telefone.Text,
                 senha = Senha.Text,
-                };
+                foto = imagem
+            
+            };
 
 
             string RestUrl = "http://104.248.186.97:8080/motorapido/ws/usuario/cadastrar";
@@ -78,20 +84,70 @@ namespace Motorapido.Views
             }
 
 
-        void Cancelar_Clicked(object sender, System.EventArgs e)
-            {
-
-       
-            }
+    
 
         public  CadastrarPage()
             {
             InitializeComponent();
 
+
+            }
+
+     
+
+        async void pickPhoto_Clicked(object sender, System.EventArgs e)
+            {
+
+
+            try
+                {
+               
+            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    {
+                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
+                    });
+
+
+                if (file == null)
+                    return;
+
+
+                using (var memoryStream = new MemoryStream())
+
+                    {
+
+                    file.GetStream().CopyTo(memoryStream);
+
+                    imagem = memoryStream.ToArray();
+
+                    }
+
+                Console.WriteLine("----->" + imagem.Length.ToString());
+
+                //    filePath = file.Path;
+                //    paths.Enqueue(filePath);
+
+                image.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                   
+                   // file.Dispose();
+                    return stream;
+                });
+
+             
+
+                }
+            catch
+                {
+               
+                }
+
+
+            }
+
+
          
-            }
-
-
-
-            }
+        }
     }
+   

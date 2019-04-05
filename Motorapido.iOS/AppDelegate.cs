@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
+using Xamarin.Essentials;
 
 namespace Motorapido.iOS
     {
@@ -22,10 +24,31 @@ namespace Motorapido.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
             {
+
+            SpeakNow();
+
+
+
             global::Xamarin.Forms.Forms.Init();
+
+            ImageCircleRenderer.Init();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
             }
+
+
+        public async Task SpeakNow()
+            {
+            var settings = new SpeechOptions()
+                {
+                Volume = (float).75,
+                Pitch = (float)1.0
+                };
+
+            await TextToSpeech.SpeakAsync("Bem vindo ao app moto rápido.", settings);
+            }
+
         }
     }

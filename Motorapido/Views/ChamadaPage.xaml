@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Motorapido.Views.ChamadaPage" Title="Chamada" >
     <ContentPage.Content>
-        
+        <ScrollView>
         <StackLayout Padding="10" Spacing="10">
             
             
+               <Label Text="Logradouro Origem" FontSize="Medium" />
+               <Label x:Name="LogradouroOrigem" FontSize="Medium" LineBreakMode="WordWrap" />
+            
                <Label Text="Origem" FontSize="Medium" />
                <Label x:Name="Origem" FontSize="Medium" LineBreakMode="WordWrap" />
+            
+               <Label Text="Logradouro Destino" FontSize="Medium" />
+               <Label x:Name="LogradouroDestino" FontSize="Medium" LineBreakMode="WordWrap" />
+            
                <Label Text="Destino" FontSize="Medium" />
                <Label x:Name="Destino" FontSize="Medium" LineBreakMode="WordWrap" />
+            
                <Label Text="Minutos" FontSize="Medium" />
                <Label x:Name="Minutos" FontSize="Medium" LineBreakMode="WordWrap" />
+            
                <Label Text="Kms" FontSize="Medium" />
                <Label x:Name="Kms" FontSize="Medium" LineBreakMode="WordWrap" />
          
@@ -23,6 +32,6 @@
         
         
         </StackLayout>
-        
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

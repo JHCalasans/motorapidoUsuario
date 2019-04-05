@@ -9,5 +9,7 @@ namespace Motorapido.Models
         public string email { get; set; }
         public string numeroTelefone { get; set; }
         public string senha { get; set; }
+        public byte [] foto { get; set; }
         }
+        
     }

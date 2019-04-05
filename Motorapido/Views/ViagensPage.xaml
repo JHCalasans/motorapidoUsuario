@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Motorapido.Views.ViagensPage" Title="Viagens" x:Name="ViagensItemsPage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Chamada" Clicked="Chamada_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="add.png" />
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-        
-    </ContentPage.ToolbarItems>
     
  <ContentPage.Content>
    
@@ -22,7 +12,9 @@
             
     <WebView x:Name="Browser" VerticalOptions="FillAndExpand" />
             
-  
+       
+    <Button x:Name="Chamada" Margin="5,5,5,5" Text="Chamada" Clicked="Chamada_Clicked" />
+        
  
  </StackLayout>
         

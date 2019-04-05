@@ -23,6 +23,8 @@ namespace Motorapido.Models
 
         public string longitudeOrigem { get; set; }
 
+
+
         public string cepDestino { get; set; }
 
         public string bairroDestino { get; set; }

@@ -11,14 +11,50 @@ namespace Motorapido.Views
     {
     public partial class ChamadaPage : ContentPage
         {
-        public ChamadaPage(string origem, string destino, string minutos, string kms)
+        public ChamadaPage(string logradouroOrigem, string bairroOrigem, string cepOrigem, string cidadeOrigem, string numeroOrigem, string logradouroDestino, string bairroDestino, string cepDestino, string cidadeDestino, string numeroDestino , string minutos, string kms)
             {
 
             InitializeComponent();
 
 
-            Origem.Text = origem;
-            Destino.Text = destino;
+            if (string.IsNullOrEmpty(numeroOrigem))
+
+                {
+                Origem.Text = bairroOrigem + numeroOrigem + " " + cepOrigem + " " + cidadeOrigem;
+
+            
+                }
+
+            else
+                {
+                Origem.Text = bairroOrigem + " " + numeroOrigem + ", " + cepOrigem + " " + cidadeOrigem;
+
+        
+
+                }
+
+
+
+            if (string.IsNullOrEmpty(numeroDestino))
+
+                {
+                Destino.Text = bairroDestino + numeroDestino + " " + cepDestino + " " + cidadeDestino;
+
+
+                }
+
+            else
+                {
+                Destino.Text = bairroDestino + " " + numeroDestino + ", " + cepDestino + " " + cidadeDestino;
+
+
+
+                }
+
+            LogradouroOrigem.Text = logradouroOrigem;
+            LogradouroDestino.Text = logradouroDestino;
+
+
             Minutos.Text = minutos;
             Kms.Text = kms;
 
@@ -41,20 +77,20 @@ namespace Motorapido.Views
                // cepOrigem = "teste",
                 bairroOrigem = Origem.Text,
                // cidadeOrigem = "teste",
-               // logradouroOrigem = "teste",
+                logradouroOrigem = LogradouroOrigem.Text,
                // numeroOrigem = "teste",
                // complementoOrigem = "teste",
                // latitudeOrigem = "teste",
                // longitudeOrigem = "teste",
 
-               // cepDestino = "teste",
+                // cepDestino = "teste",
                 bairroDestino = Destino.Text,
                //cidadeDestino = "teste",
-               // logradouroDestino = "teste",
-               // numeroDestino = "teste",
-               // complementoDestino = "teste",
-               // latitudeDestino = "teste",
-               // longitudeDestino = "teste",
+                logradouroDestino = LogradouroDestino.Text,
+                // numeroDestino = "teste",
+                // complementoDestino = "teste",
+                // latitudeDestino = "teste",
+                // longitudeDestino = "teste",
 
                 observacao = Observação.ToString()
 

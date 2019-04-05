@@ -1,25 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using Motorapido.Models;
-using Motorapido.Views;
-using Motorapido.ViewModels;
 using Xamarin.Essentials;
 using System.Net;
 
 
-
-using System.Xml;
-
 using System.Xml.Linq;
-using Newtonsoft.Json;
-using System.Net.Http;
+using System.Linq;
 
 namespace Motorapido.Views
     {
@@ -49,7 +38,12 @@ namespace Motorapido.Views
 
             // Validar os input's do origin-input e destination-input e places id's
 
-            if (string.IsNullOrEmpty(Destination) || string.IsNullOrEmpty(Origin) || string.IsNullOrEmpty(originid) || string.IsNullOrEmpty(destinationid))
+            if (string.IsNullOrEmpty(Origin) 
+            || string.IsNullOrEmpty(Destination)
+            || string.IsNullOrEmpty(originid)
+            || string.IsNullOrEmpty(destinationid)
+            || string.IsNullOrEmpty(minutos)
+            || string.IsNullOrEmpty(kms))
 
                 {
 
@@ -64,41 +58,197 @@ namespace Motorapido.Views
 
                 string address1 = "https://maps.googleapis.com/maps/api/place/details/xml?placeid="
 
-                   + originid + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s";
+                   + originid + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s" + "&language=pt-BR";
 
                 WebRequest request1 = WebRequest.Create(address1);
                 WebResponse response1 = await request1.GetResponseAsync();
                 XDocument xdoc1 = XDocument.Load(response1.GetResponseStream());
 
+
+                //Location details
+
+                // !!!!! try catch de outros componentes também 
+
+
+                var cepOrigem = "";
+
+                try
+                    {
+
+                    cepOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "postal_code").Parent.Element("long_name").Value;
+
+                    }
+                catch
+                    {
+
+                    cepOrigem = "";
+
+                    }
+
+
+                var cidadeOrigem = "";
+
+                try
+                    {
+
+
+                    cidadeOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "locality").Parent.Element("long_name").Value;
+
+
+                    }
+                catch
+                    {
+
+                    cidadeOrigem = "";
+
+                    }
+
+
+
+
+                var numeroOrigem="";
+
+                try
+                    {
+                
+                    numeroOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "street_number").Parent.Element("long_name").Value;
+
+
+                    }
+                catch
+                    {
+
+                    numeroOrigem = "";
+
+
+                    }
+
+
+
+                var bairroOrigem = "";
+
+                try
+                    {
+
+                    bairroOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "route").Parent.Element("long_name").Value;
+
+
+                    }
+                catch
+                    {
+
+                    bairroOrigem = "";
+
+
+                    }
+
+           
+
+
                 XElement result1 = xdoc1.Element("PlaceDetailsResponse").Element("result");
-                XElement locationElement1 = result1.Element("formatted_address");
+                XElement name1 = result1.Element("name");
+
+                var logradouroOrigem = name1.Value;
 
 
-                string origem = locationElement1.Value;
+
 
                 string address2 = "https://maps.googleapis.com/maps/api/place/details/xml?placeid="
 
-                + destinationid + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s";
+                + destinationid + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s" + "&language=pt-BR";
 
                 WebRequest request2 = WebRequest.Create(address2);
                 WebResponse response2 = await request2.GetResponseAsync();
                 XDocument xdoc2 = XDocument.Load(response2.GetResponseStream());
 
+
+
+                var cepDestino = "";
+
+                try
+                    {
+
+
+                    cepDestino = xdoc2.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "postal_code").Parent.Element("long_name").Value;
+
+                    }
+                catch
+                    {
+
+                    cepDestino = "";
+
+
+                    }
+
+
+
+                var cidadeDestino = "";
+
+                try
+                    {
+
+
+                    cidadeDestino = xdoc2.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "locality").Parent.Element("long_name").Value;
+
+                    }
+
+                catch
+                    {
+
+                    cidadeDestino = "";
+
+                    }
+
+
+                var numeroDestino="";
+
+                try
+                    {
+
+                    numeroDestino = xdoc2.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "street_number").Parent.Element("long_name").Value;
+
+
+                    }
+                catch
+                    {
+
+                    numeroDestino = "";
+
+
+                    }
+
+
+
+                var bairroDestino = "";
+
+                try
+                    {
+                    bairroDestino = xdoc2.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "route").Parent.Element("long_name").Value;
+
+
+                    }
+                catch
+                    {
+
+                    bairroDestino = "";
+
+
+                    }
+
+
+           
                 XElement result2 = xdoc2.Element("PlaceDetailsResponse").Element("result");
-                XElement locationElement2 = result2.Element("formatted_address");
+                XElement name2 = result2.Element("name");
+                var logradouroDestino = name2.Value;
 
 
-                string destino = locationElement2.Value;
 
-
-                await Navigation.PushAsync(new ChamadaPage(origem, destino, minutos, kms));
+                await Navigation.PushAsync(new ChamadaPage(logradouroOrigem, bairroOrigem, cepOrigem, cidadeOrigem, numeroOrigem, logradouroDestino, bairroDestino, cepDestino, cidadeDestino, numeroDestino, minutos, kms));
 
 
                 }
 
             }
-
-
 
         Location location;
 
@@ -176,6 +326,7 @@ namespace Motorapido.Views
 
 
             }
+
 
         async Task GPS()
             {
