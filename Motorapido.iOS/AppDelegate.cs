@@ -25,7 +25,7 @@ namespace Motorapido.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
             {
 
-            SpeakNow();
+            // SpeakNow();
 
 
 

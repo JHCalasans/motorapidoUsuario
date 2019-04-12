@@ -35,7 +35,7 @@ namespace Motorapido.Droid
 
 
             base.OnStart();
-            SpeakNow();
+          //  SpeakNow();
 
             Task startupWork = new Task(() => { SimulateStartup(); });
             startupWork.Start();

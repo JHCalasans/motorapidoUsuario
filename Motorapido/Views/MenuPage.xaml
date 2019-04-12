@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Motorapido.Views.MenuPage" Title="Menu">
-    <StackLayout VerticalOptions="FillAndExpand">
+    <StackLayout VerticalOptions="FillAndExpand"
+                  xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
         <ListView x:Name="ListViewMenu" HasUnevenRows="True">
            <ListView.Header>
                 
         <StackLayout BackgroundColor="Teal" x:Name="Top" Padding="10,10,10,10" Orientation="Vertical">
 
-            <Image Source="logo_menu.png" HorizontalOptions="StartAndExpand" HeightRequest="110" />
-                    
-            <Label Text="User name" FontSize="20" TextColor="White"></Label>
+                  
+            <controls:CircleImage x:Name="imagem" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="Start" />
+         
+          
+            <Label x:Name="username" FontSize="20" TextColor="White"></Label>
                     
             </StackLayout>
 

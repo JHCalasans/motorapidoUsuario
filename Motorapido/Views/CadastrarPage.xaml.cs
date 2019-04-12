@@ -41,8 +41,16 @@ namespace Motorapido.Views
                 numeroTelefone = Telefone.Text,
                 senha = Senha.Text,
                 foto = imagem
-            
             };
+
+
+
+            string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "imagem");
+           
+            File.WriteAllBytes(file, imagem);
+
+
+              
 
 
             string RestUrl = "http://104.248.186.97:8080/motorapido/ws/usuario/cadastrar";
@@ -66,6 +74,10 @@ namespace Motorapido.Views
                 Console.WriteLine ("Cadastrado com sucesso");
 
                 Preferences.Set("Cadastrado", "true");
+
+                Preferences.Set("UserName", Nome.Text);
+
+
 
                 Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new ViagensPage()) };
 
