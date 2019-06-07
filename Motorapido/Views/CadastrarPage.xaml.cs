@@ -77,7 +77,7 @@ namespace Motorapido.Views
 
                 Preferences.Set("UserName", Nome.Text);
 
-
+                Console.WriteLine("-------->", response.ToString());
 
                 Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new ViagensPage()) };
 

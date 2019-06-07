@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Plugin.CurrentActivity;
 using ImageCircle.Forms.Plugin.Droid;
+using Com.OneSignal;
 
 namespace Motorapido.Droid
     {
@@ -33,7 +34,11 @@ namespace Motorapido.Droid
 
             base.OnCreate(savedInstanceState);
 
-    
+            
+            OneSignal.Current.StartInit("0df18d37-de4c-4705-87cb-c1d2f3c789d1")
+                     .EndInit();
+
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
          
 

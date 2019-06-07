@@ -69,34 +69,32 @@ namespace Motorapido.Views
             var uri = new Uri(string.Format(RestUrl, string.Empty));
 
 
-            Chamada data = new Chamada
+          Chamada data = new Chamada
                 {
 
-                codUsuario = 80,
-
-               // cepOrigem = "teste",
-                bairroOrigem = Origem.Text,
-               // cidadeOrigem = "teste",
-                logradouroOrigem = LogradouroOrigem.Text,
-               // numeroOrigem = "teste",
-               // complementoOrigem = "teste",
-               // latitudeOrigem = "teste",
-               // longitudeOrigem = "teste",
-
-                // cepDestino = "teste",
-                bairroDestino = Destino.Text,
-               //cidadeDestino = "teste",
-                logradouroDestino = LogradouroDestino.Text,
-                // numeroDestino = "teste",
-                // complementoDestino = "teste",
-                // latitudeDestino = "teste",
-                // longitudeDestino = "teste",
-
-                observacao = Observação.ToString()
+              
+                codUsuario = 172,
+                cepOrigem = "teste",
+                bairroOrigem = "teste",
+                cidadeOrigem = "teste",
+                logradouroOrigem = "teste",
+                numeroOrigem = "teste",
+                complementoOrigem = "teste",
+                latitudeOrigem = "-10.940531",
+                longitudeOrigem = "-37.057670",
+                cepDestino = "teste",
+                bairroDestino = "teste",
+                cidadeDestino = "teste",
+                logradouroDestino = "teste",
+                numeroDestino = "teste",
+                complementoDestino = "teste",
+                latitudeDestino = "-10.921407",
+                longitudeDestino = "-37.068590",
+                observacao = Observação.Text
 
 
-                };
 
+        };
 
 
             var json = JsonConvert.SerializeObject(data);
@@ -151,6 +149,10 @@ namespace Motorapido.Views
                 await Navigation.PushAsync(new RetornoChamadaDetailPage(new RetornoChamadaDetailViewModel(retornochamada)));
 
                 }
+
+            else
+                Console.WriteLine("------------------------>" + response.ReasonPhrase + response.StatusCode);
+
             }
         }
     }

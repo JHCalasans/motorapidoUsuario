@@ -144,6 +144,9 @@
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
       <Version>3.0.0.5</Version>
     </PackageReference>
+    <PackageReference Include="Com.OneSignal">
+      <Version>3.2.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\logo_splash.imageset\" />
