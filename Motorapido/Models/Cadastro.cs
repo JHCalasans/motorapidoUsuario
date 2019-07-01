@@ -11,6 +11,8 @@ namespace Motorapido.Models
         public string senha { get; set; }
         public byte [] foto { get; set; }
         public Int64 codBinarioFoto { get; set; }
+
+        public String idPush { get; set; }
     }
         
     }

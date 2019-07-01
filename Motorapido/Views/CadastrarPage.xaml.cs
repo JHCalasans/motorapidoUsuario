@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Plugin.FileUploader;
 using Plugin.FileUploader.Abstractions;
 using System.IO;
+using Com.OneSignal;
 
 namespace Motorapido.Views
     {
@@ -50,7 +51,7 @@ namespace Motorapido.Views
             File.WriteAllBytes(file, imagem);
 
 
-              
+            OneSignal.Current.IdsAvailable((id, token) => data.idPush = id);
 
 
             string RestUrl = "http://104.248.186.97:8080/motorapido/ws/usuario/cadastrar";
