@@ -11,7 +11,7 @@ namespace Motorapido.Views
     {
     public partial class ChamadaPage : ContentPage
         {
-        public ChamadaPage(string logradouroOrigem, string bairroOrigem, string cepOrigem, string cidadeOrigem, string numeroOrigem, string logradouroDestino, string bairroDestino, string cepDestino, string cidadeDestino, string numeroDestino , string minutos, string kms)
+        public ChamadaPage(string logradouroOrigem, string bairroOrigem, string cepOrigem, string cidadeOrigem, string numeroOrigem, string logradouroDestino, string bairroDestino, string cepDestino, string cidadeDestino, string numeroDestino, string minutos, string kms)
             {
 
             InitializeComponent();
@@ -22,14 +22,14 @@ namespace Motorapido.Views
                 {
                 Origem.Text = bairroOrigem + numeroOrigem + " " + cepOrigem + " " + cidadeOrigem;
 
-            
+
                 }
 
             else
                 {
                 Origem.Text = bairroOrigem + " " + numeroOrigem + ", " + cepOrigem + " " + cidadeOrigem;
 
-        
+
 
                 }
 
@@ -61,7 +61,7 @@ namespace Motorapido.Views
 
             }
 
-          
+
         async void Chamar_Clicked(object sender, System.EventArgs e)
             {
             string RestUrl = "http://104.248.186.97:8080/motorapido/ws/usuario/enviarChamada";
@@ -69,10 +69,10 @@ namespace Motorapido.Views
             var uri = new Uri(string.Format(RestUrl, string.Empty));
 
 
-          Chamada data = new Chamada
+            Chamada data = new Chamada
                 {
 
-              
+
                 codUsuario = 172,
                 cepOrigem = "teste",
                 bairroOrigem = "teste",
@@ -94,7 +94,7 @@ namespace Motorapido.Views
 
 
 
-        };
+                };
 
 
             var json = JsonConvert.SerializeObject(data);
@@ -113,12 +113,13 @@ namespace Motorapido.Views
                 {
 
 
-                Console.WriteLine("Chamada com sucesso");
 
                 string input = await response.Content.ReadAsStringAsync();
 
 
                 dynamic output = JsonConvert.DeserializeObject<dynamic>(input);
+
+
 
 
                 RetornoChamada retornochamada = new RetornoChamada();

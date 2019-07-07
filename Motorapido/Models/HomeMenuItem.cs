@@ -11,7 +11,9 @@ namespace Motorapido.Models
         Cadastrar,
         Viagens,
         Histórico,
-        Recomendar
+        Recomendar,
+        GPS,
+        Sair
         }
 
     public class HomeMenuItem

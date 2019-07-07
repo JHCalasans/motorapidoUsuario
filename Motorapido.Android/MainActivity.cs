@@ -9,6 +9,7 @@ using Android.OS;
 using Plugin.CurrentActivity;
 using ImageCircle.Forms.Plugin.Droid;
 using Com.OneSignal;
+using Plugin.Permissions;
 
 namespace Motorapido.Droid
     {
@@ -21,11 +22,13 @@ namespace Motorapido.Droid
             {
           
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             }
+     
+       
 
         protected override void OnCreate(Bundle savedInstanceState)
             {

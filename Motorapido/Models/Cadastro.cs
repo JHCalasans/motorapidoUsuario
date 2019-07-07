@@ -12,7 +12,7 @@ namespace Motorapido.Models
         public byte [] foto { get; set; }
         public Int64 codBinarioFoto { get; set; }
 
-        public String idPush { get; set; }
+        public string idPush { get; set; }
     }
         
     }

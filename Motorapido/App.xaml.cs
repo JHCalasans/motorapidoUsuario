@@ -12,6 +12,7 @@ using Motorapido.Views;
 using System.Xml.Linq;
 using Plugin.Media;
 using Com.OneSignal;
+using Device = Xamarin.Forms.Device;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Motorapido
@@ -27,9 +28,10 @@ namespace Motorapido
 
             CrossMedia.Current.Initialize();
 
-      
+
+
             OneSignal.Current.StartInit("0df18d37-de4c-4705-87cb-c1d2f3c789d1")
-                     .EndInit();
+             .EndInit();
 
 
 
@@ -43,13 +45,31 @@ namespace Motorapido
                 }
 
             else
+
                 {
 
-        
-
-            MainPage = new MainPage();
 
 
+                if (Preferences.Get("Autenticado", "default_value") != "true")
+
+                    {
+
+                    // para Modal ......... MainPage = new CadastrarPage();
+
+                    Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new LoginPage()) };
+                    }
+
+
+                else
+
+                    {
+
+
+
+                    Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new ViagensPage()) };
+
+
+                    }
                 }
             }
 
@@ -64,7 +84,7 @@ namespace Motorapido
             await GPS();
 
 
-    
+
 
             }
 
@@ -100,6 +120,6 @@ namespace Motorapido
             // Handle when your app resumes
             }
 
-   
+
         }
     }

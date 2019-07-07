@@ -5,6 +5,8 @@
    
         
  <StackLayout>
+     
+     
             
     <ActivityIndicator x:Name="actInd"
                              IsRunning="false" Margin="5,5,5,5"

@@ -76,11 +76,14 @@ namespace Motorapido.Views
 
                 Preferences.Set("Cadastrado", "true");
 
+
+                //o username tem de vir do Logar/Login!!
+
                 Preferences.Set("UserName", Nome.Text);
 
                 Console.WriteLine("-------->", response.ToString());
 
-                Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new ViagensPage()) };
+                Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new LoginPage()) };
 
 
                 }

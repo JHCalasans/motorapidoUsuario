@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    
+    
+    
+       <!-- Cor para a selecção de Menu -->
+    <color name="DarkOverride">#2196F3</color>
+    
     <style name="MyTheme" parent="MyTheme.Base">
             
     </style>
@@ -21,6 +27,12 @@
          colorControlHighlight and colorSwitchThumbNormal. -->
         <item name="windowActionModeOverlay">true</item>
         <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+        
+         
+         <!-- Cor para a selecção de Menu -->
+         <item name="android:colorActivatedHighlight">@color/DarkOverride</item>
+        
+        
     </style>
     <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">#a39167</item>

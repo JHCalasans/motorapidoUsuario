@@ -10,6 +10,8 @@ using System.Net;
 using System.Xml.Linq;
 using System.Linq;
 
+
+
 namespace Motorapido.Views
     {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -25,7 +27,7 @@ namespace Motorapido.Views
 
 
             string originid = await Browser.EvaluateJavaScriptAsync("getOriginPlaceId()");
-            string destinationid = await Browser.EvaluateJavaScriptAsync("getDestinationPlaceId()");   
+            string destinationid = await Browser.EvaluateJavaScriptAsync("getDestinationPlaceId()");
             string minutos = await Browser.EvaluateJavaScriptAsync("getMinutos()");
             string kms = await Browser.EvaluateJavaScriptAsync("getKms()");
 
@@ -34,11 +36,11 @@ namespace Motorapido.Views
 
             Console.WriteLine("---->" + Destination + " " + destinationid);
 
-        
+
 
             // Validar os input's do origin-input e destination-input e places id's
 
-            if (string.IsNullOrEmpty(Origin) 
+            if (string.IsNullOrEmpty(Origin)
             || string.IsNullOrEmpty(Destination)
             || string.IsNullOrEmpty(originid)
             || string.IsNullOrEmpty(destinationid)
@@ -106,11 +108,11 @@ namespace Motorapido.Views
 
 
 
-                var numeroOrigem="";
+                var numeroOrigem = "";
 
                 try
                     {
-                
+
                     numeroOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "street_number").Parent.Element("long_name").Value;
 
 
@@ -142,7 +144,7 @@ namespace Motorapido.Views
 
                     }
 
-           
+
 
 
                 XElement result1 = xdoc1.Element("PlaceDetailsResponse").Element("result");
@@ -200,7 +202,7 @@ namespace Motorapido.Views
                     }
 
 
-                var numeroDestino="";
+                var numeroDestino = "";
 
                 try
                     {
@@ -236,7 +238,7 @@ namespace Motorapido.Views
                     }
 
 
-           
+
                 XElement result2 = xdoc2.Element("PlaceDetailsResponse").Element("result");
                 XElement name2 = result2.Element("name");
                 var logradouroDestino = name2.Value;
@@ -250,7 +252,7 @@ namespace Motorapido.Views
 
             }
 
-        Location location;
+        Xamarin.Essentials.Location location = null;
 
 
         public ViagensPage()
@@ -271,70 +273,104 @@ namespace Motorapido.Views
             {
             base.OnAppearing();
 
-        
+
 
             if (Preferences.Get("Cadastrado", "default_value") == "true")
 
-                {
+
+
                 actInd.IsVisible = true;
                 actInd.IsRunning = true;
-                }
-
-
 
             await GPS();
 
-
-            // Preferences.Set("latitude", location.Latitude.ToString().Replace(",", "."));
-            string latitude = location.Latitude.ToString().Replace(",", ".");
-
-            //  Preferences.Set("longitude", location.Longitude.ToString().Replace(",", "."));
-            string longitude = location.Longitude.ToString().Replace(",", ".");
-
-            string address = "https://maps.googleapis.com/maps/api/geocode/xml?latlng="
-
-             + latitude + "," + longitude + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s";
-
-            WebRequest request = WebRequest.Create(address);
-            WebResponse response = await request.GetResponseAsync();
-            XDocument xdoc = XDocument.Load(response.GetResponseStream());
-
-            XElement result = xdoc.Element("GeocodeResponse").Element("result");
-            XElement locationElement = result.Element("formatted_address");
-            XElement placeidElement = result.Element("place_id");
-
-        //    Preferences.Set("origem", locationElement.Value);
-            string origem = locationElement.Value;
-
-            //    Preferences.Set("placeid", placeidElement.Value);
-            string placeid = placeidElement.Value;
+            if (location == null)
 
 
 
-            Browser.Source = "http://fferreira-001-site3.gtempurl.com/Index.html?latitude="
-            + latitude + "&longitude="
-            + longitude + "&origem="
-            + origem
-            + "&placeid=" + placeid;
 
-            //  Browser.Reload();
+                {
+
+                Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new GPSPage()) };
 
 
-            actInd.IsVisible = false;
-            actInd.IsRunning = false;
+
+                }
 
 
+            else
+
+                {
+
+
+
+
+                // Preferences.Set("latitude", location.Latitude.ToString().Replace(",", "."));
+                string latitude = location.Latitude.ToString().Replace(",", ".");
+
+                //  Preferences.Set("longitude", location.Longitude.ToString().Replace(",", "."));
+
+                string longitude = location.Longitude.ToString().Replace(",", ".");
+                string address = "https://maps.googleapis.com/maps/api/geocode/xml?latlng="
+
+                 + latitude + "," + longitude + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s";
+
+                WebRequest request = WebRequest.Create(address);
+                WebResponse response = await request.GetResponseAsync();
+                XDocument xdoc = XDocument.Load(response.GetResponseStream());
+
+                XElement result = xdoc.Element("GeocodeResponse").Element("result");
+                XElement locationElement = result.Element("formatted_address");
+                XElement placeidElement = result.Element("place_id");
+
+                //    Preferences.Set("origem", locationElement.Value);
+                string origem = locationElement.Value;
+
+                //    Preferences.Set("placeid", placeidElement.Value);
+                string placeid = placeidElement.Value;
+
+
+
+                Browser.Source = "http://fferreira-001-site3.gtempurl.com/Index.html?latitude="
+                + latitude + "&longitude="
+                + longitude + "&origem="
+                + origem
+                + "&placeid=" + placeid;
+
+                //  Browser.Reload();
+
+
+                actInd.IsVisible = false;
+                actInd.IsRunning = false;
+
+                }
 
             }
+
+
+
 
 
         async Task GPS()
             {
 
 
-            var request = new GeolocationRequest(GeolocationAccuracy.Best);
-            location = await Geolocation.GetLocationAsync(request);
+            try
+
+                {
+
+                var request = new GeolocationRequest(GeolocationAccuracy.Best);
+                location = await Geolocation.GetLocationAsync(request);
+                }
+
+            catch
+
+                {
+
+
+                }
 
             }
+
         }
     }

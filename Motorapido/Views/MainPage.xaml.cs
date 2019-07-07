@@ -17,7 +17,7 @@ namespace Motorapido.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.Viagens, (NavigationPage)Detail);
+          //  MenuPages.Add((int)MenuItemType.Login, (NavigationPage)Detail);
             }
 
         public async Task NavigateFromMenu(int id)
@@ -42,6 +42,14 @@ namespace Motorapido.Views
 
                     case (int)MenuItemType.Recomendar:
                         MenuPages.Add(id, new NavigationPage(new RecomendarPage()));
+                        break;
+
+                    case (int)MenuItemType.GPS:
+                        MenuPages.Add(id, new NavigationPage(new GPSPage()));
+                        break;
+
+                    case (int)MenuItemType.Sair:
+                        MenuPages.Add(id, new NavigationPage(new SairPage()));
                         break;
                     }
                 }

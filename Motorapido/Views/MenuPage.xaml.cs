@@ -15,26 +15,58 @@ namespace Motorapido.Views
         List<HomeMenuItem> menuItems;
         public MenuPage()
             {
+
             InitializeComponent();
 
-
-        
-            
             string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "imagem");
+           
+            FileInfo fi = new FileInfo(file);
+        
+            if (fi.Exists && fi.Length > 0 && Preferences.Get("Autenticado", "default_value" == "true"))
 
-            imagem.Source = file;
-            username.Text = Preferences.Get("UserName", "default_value");
+                imagem.Source = file;
+
+            else
+
+                imagem.Source = "my_pick.png";
+
+            if (Preferences.Get("UserName", "default_value")!="default_value")
+                {
+                username.IsVisible = true;
+
+                username.Text = Preferences.Get("UserName", "default_value");
+
+                }
 
 
-            menuItems = new List<HomeMenuItem>
+            if (Preferences.Get("Cadastrado", "default_value") == "true" && Preferences.Get("Autenticado", "default_value") == "true")
+            
             {
-              
-                new HomeMenuItem {Id = MenuItemType.Login, Title="Logar" },
-                new HomeMenuItem {Id = MenuItemType.Cadastrar, Title="Cadastrar" },
+                menuItems = new List<HomeMenuItem>
+                {
+            
                 new HomeMenuItem {Id = MenuItemType.Viagens, Title="Viagens" },
                 new HomeMenuItem {Id = MenuItemType.Histórico, Title="Histórico" },
-                new HomeMenuItem {Id = MenuItemType.Recomendar, Title="Compartilhar" }
-            };
+                new HomeMenuItem {Id = MenuItemType.Recomendar, Title="Compartilhar" },
+
+                new HomeMenuItem {Id = MenuItemType.GPS, Title="Definições GPS" },
+
+                new HomeMenuItem {Id = MenuItemType.Sair, Title="Sair" }
+                };
+            }
+            else
+
+            {
+                menuItems = new List<HomeMenuItem>
+                {
+
+                new HomeMenuItem {Id = MenuItemType.Login, Title="Logar" },
+                new HomeMenuItem {Id = MenuItemType.Cadastrar, Title="Cadastrar" },
+                new HomeMenuItem {Id = MenuItemType.GPS, Title="Definições GPS" }
+                };
+            
+            }
+
 
             ListViewMenu.ItemsSource = menuItems;
 
