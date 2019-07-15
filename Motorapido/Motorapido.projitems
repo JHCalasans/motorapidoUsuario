@@ -45,6 +45,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SearchPlacePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MapStyle.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -111,6 +116,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SairPage.xaml.cs">
       <DependentUpon>SairPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Login.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViagensViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SearchPlacePage.xaml.cs">
+      <DependentUpon>SearchPlacePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GoogleDirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GooglePlace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GooglePlaceAutoCompletePrediction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\GoogleMapsApiService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IGoogleMapsApiService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\PolylineHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
@@ -132,5 +149,12 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)FodyWeavers.xml" />
+    <None Include="$(MSBuildThisFileDirectory)FodyWeavers.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
   </ItemGroup>
 </Project>

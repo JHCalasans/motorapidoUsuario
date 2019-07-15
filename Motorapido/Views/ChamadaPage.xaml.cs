@@ -5,10 +5,13 @@ using System.Text;
 using Motorapido.Models;
 using Motorapido.ViewModels;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Motorapido.Views
     {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChamadaPage : ContentPage
         {
         public ChamadaPage(string logradouroOrigem, string bairroOrigem, string cepOrigem, string cidadeOrigem, string numeroOrigem, string logradouroDestino, string bairroDestino, string cepDestino, string cidadeDestino, string numeroDestino, string minutos, string kms)
@@ -73,7 +76,7 @@ namespace Motorapido.Views
                 {
 
 
-                codUsuario = 172,
+                codUsuario = int.Parse(Preferences.Get("UserId", "default_value")),
                 cepOrigem = "teste",
                 bairroOrigem = "teste",
                 cidadeOrigem = "teste",
@@ -107,7 +110,32 @@ namespace Motorapido.Views
 
             var client = new HttpClient();
 
-            response = await client.PostAsync(uri, content);
+        
+
+            try
+
+                {
+
+                response = await client.PostAsync(uri, content);
+
+
+
+                }
+
+            catch
+                {
+
+
+                await Application.Current.MainPage.DisplayAlert("Erro", "API não disponível ou sem conectividade Internet.", "OK");
+
+
+
+
+                return;
+
+
+                }
+
 
             if (response.IsSuccessStatusCode)
                 {

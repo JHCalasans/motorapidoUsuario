@@ -13,26 +13,46 @@ using Plugin.FileUploader;
 using Plugin.FileUploader.Abstractions;
 using System.IO;
 using Com.OneSignal;
+using System.Security.Cryptography;
 
 namespace Motorapido.Views
     {
 
-   
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CadastrarPage : ContentPage
         {
 
-     
-        byte[] imagem = new byte [] { };
+
+        byte[] imagem = new byte[] { };
+
+
+        private static string HashPassword(string str)
+            {
+            SHA256 sha256 = SHA256Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(str);
+            byte[] hash = sha256.ComputeHash(bytes);
+            return GetStringFromHash(hash);
+            }
+
+        private static string GetStringFromHash(byte[] hash)
+            {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+                {
+                result.Append(hash[i].ToString("X2"));
+                }
+            return result.ToString();
+            }
 
         async void Cadastrar_Clicked(object sender, System.EventArgs e)
 
             {
 
 
-         //  Preferences.Set("Cadastrado", "true");
+            //  Preferences.Set("Cadastrado", "true");
 
-         //   Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new ViagensPage()) };
+            //   Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new ViagensPage()) };
 
 
             Cadastro data = new Cadastro
@@ -40,14 +60,14 @@ namespace Motorapido.Views
                 nome = Nome.Text,
                 email = Email.Text,
                 numeroTelefone = Telefone.Text,
-                senha = Senha.Text,
+                senha = HashPassword(Senha.Text),
                 foto = imagem
-            };
+                };
 
 
 
             string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "imagem");
-           
+
             File.WriteAllBytes(file, imagem);
 
 
@@ -67,21 +87,44 @@ namespace Motorapido.Views
 
             var client = new HttpClient();
 
-            response = await client.PostAsync(uri, content);
+       
+
+            try
+
+                {
+
+                response = await client.PostAsync(uri, content);
+
+
+
+                }
+
+            catch
+                {
+
+
+                await Application.Current.MainPage.DisplayAlert("Erro", "API não disponível ou sem conectividade Internet.", "OK");
+
+
+
+
+                return;
+
+
+                }
+
+
 
             if (response.IsSuccessStatusCode)
                 {
 
-                Console.WriteLine ("Cadastrado com sucesso");
+                var respStr = await response.Content.ReadAsStringAsync();
+
+          
 
                 Preferences.Set("Cadastrado", "true");
 
-
-                //o username tem de vir do Logar/Login!!
-
-                Preferences.Set("UserName", Nome.Text);
-
-                Console.WriteLine("-------->", response.ToString());
+                Console.WriteLine("Cadastrado com sucesso");
 
                 Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new LoginPage()) };
 
@@ -93,23 +136,23 @@ namespace Motorapido.Views
 
                 {
 
-                DisplayAlert("Ops!", response.StatusCode.ToString(), "Ok");
+                await DisplayAlert("Ops!", response.StatusCode.ToString(), "Ok");
 
                 }
 
             }
 
 
-    
 
-        public  CadastrarPage()
+
+        public CadastrarPage()
             {
             InitializeComponent();
 
 
             }
 
-     
+
 
         async void pickPhoto_Clicked(object sender, System.EventArgs e)
             {
@@ -117,8 +160,8 @@ namespace Motorapido.Views
 
             try
                 {
-               
-            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+
+                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
                     {
                     PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
                     });
@@ -146,24 +189,23 @@ namespace Motorapido.Views
                 image.Source = ImageSource.FromStream(() =>
                 {
                     var stream = file.GetStream();
-                   
-                   // file.Dispose();
+
+                    // file.Dispose();
                     return stream;
                 });
 
-             
+
 
                 }
             catch
                 {
-               
+
                 }
 
 
             }
 
 
-         
+
         }
     }
-   

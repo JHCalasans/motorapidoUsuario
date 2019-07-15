@@ -11,7 +11,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:ViagensPage />
+                <views:LoginPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

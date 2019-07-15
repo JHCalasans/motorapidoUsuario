@@ -4,7 +4,7 @@
              x:Class="Motorapido.Views.RetornoChamadaDetailPage"
              Title="{Binding Title}">
       <ScrollView>     
-      <StackLayout Spacing="20" Padding="15">
+     <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
         
         <Label Text="{Binding RetornoChamada.dataChamada, StringFormat='Data da Chamada: {0}' }"
         LineBreakMode="WordWrap"

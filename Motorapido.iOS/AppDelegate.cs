@@ -70,6 +70,8 @@ namespace Motorapido.iOS
 
             global::Xamarin.Forms.Forms.Init();
 
+            Xamarin.FormsGoogleMaps.Init(Constants.GoogleMapsApiKey);
+
             ImageCircleRenderer.Init();
 
             LoadApplication(new App());

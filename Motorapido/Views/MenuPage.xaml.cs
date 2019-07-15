@@ -22,7 +22,7 @@ namespace Motorapido.Views
            
             FileInfo fi = new FileInfo(file);
         
-            if (fi.Exists && fi.Length > 0 && Preferences.Get("Autenticado", "default_value" == "true"))
+            if (fi.Exists && fi.Length > 0 && Preferences.Get("Autenticado", "default_value") == "true")
 
                 imagem.Source = file;
 

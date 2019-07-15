@@ -1,375 +1,161 @@
 ﻿using System;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
-using System.Net;
-
-
-using System.Xml.Linq;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Motorapido.Views;
+using Xamarin.Essentials;
+using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
+using Xamarin.Forms.Xaml;
 
-
-
-namespace Motorapido.Views
+namespace Motorapido
     {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViagensPage : ContentPage
         {
+        public static readonly BindableProperty CalculateCommandProperty =
+            BindableProperty.Create(nameof(CalculateCommand), typeof(ICommand), typeof(ViagensPage), null, BindingMode.TwoWay);
 
-        async void Chamada_Clicked(object sender, System.EventArgs e)
+        public ICommand CalculateCommand
             {
-
-
-            string Origin = await Browser.EvaluateJavaScriptAsync("getOrigin()");
-            string Destination = await Browser.EvaluateJavaScriptAsync("getDestination()");
-
-
-            string originid = await Browser.EvaluateJavaScriptAsync("getOriginPlaceId()");
-            string destinationid = await Browser.EvaluateJavaScriptAsync("getDestinationPlaceId()");
-            string minutos = await Browser.EvaluateJavaScriptAsync("getMinutos()");
-            string kms = await Browser.EvaluateJavaScriptAsync("getKms()");
-
-
-            Console.WriteLine("---->" + Origin + " " + originid);
-
-            Console.WriteLine("---->" + Destination + " " + destinationid);
-
-
-
-            // Validar os input's do origin-input e destination-input e places id's
-
-            if (string.IsNullOrEmpty(Origin)
-            || string.IsNullOrEmpty(Destination)
-            || string.IsNullOrEmpty(originid)
-            || string.IsNullOrEmpty(destinationid)
-            || string.IsNullOrEmpty(minutos)
-            || string.IsNullOrEmpty(kms))
-
-                {
-
-                DisplayAlert("Ops!", "Introduza a Origem e o Destino", "OK");
-
-                }
-
-
-            else
-
-                {
-
-                string address1 = "https://maps.googleapis.com/maps/api/place/details/xml?placeid="
-
-                   + originid + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s" + "&language=pt-BR";
-
-                WebRequest request1 = WebRequest.Create(address1);
-                WebResponse response1 = await request1.GetResponseAsync();
-                XDocument xdoc1 = XDocument.Load(response1.GetResponseStream());
-
-
-                //Location details
-
-                // !!!!! try catch de outros componentes também 
-
-
-                var cepOrigem = "";
-
-                try
-                    {
-
-                    cepOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "postal_code").Parent.Element("long_name").Value;
-
-                    }
-                catch
-                    {
-
-                    cepOrigem = "";
-
-                    }
-
-
-                var cidadeOrigem = "";
-
-                try
-                    {
-
-
-                    cidadeOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "locality").Parent.Element("long_name").Value;
-
-
-                    }
-                catch
-                    {
-
-                    cidadeOrigem = "";
-
-                    }
-
-
-
-
-                var numeroOrigem = "";
-
-                try
-                    {
-
-                    numeroOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "street_number").Parent.Element("long_name").Value;
-
-
-                    }
-                catch
-                    {
-
-                    numeroOrigem = "";
-
-
-                    }
-
-
-
-                var bairroOrigem = "";
-
-                try
-                    {
-
-                    bairroOrigem = xdoc1.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "route").Parent.Element("long_name").Value;
-
-
-                    }
-                catch
-                    {
-
-                    bairroOrigem = "";
-
-
-                    }
-
-
-
-
-                XElement result1 = xdoc1.Element("PlaceDetailsResponse").Element("result");
-                XElement name1 = result1.Element("name");
-
-                var logradouroOrigem = name1.Value;
-
-
-
-
-                string address2 = "https://maps.googleapis.com/maps/api/place/details/xml?placeid="
-
-                + destinationid + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s" + "&language=pt-BR";
-
-                WebRequest request2 = WebRequest.Create(address2);
-                WebResponse response2 = await request2.GetResponseAsync();
-                XDocument xdoc2 = XDocument.Load(response2.GetResponseStream());
-
-
-
-                var cepDestino = "";
-
-                try
-                    {
-
-
-                    cepDestino = xdoc2.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "postal_code").Parent.Element("long_name").Value;
-
-                    }
-                catch
-                    {
-
-                    cepDestino = "";
-
-
-                    }
-
-
-
-                var cidadeDestino = "";
-
-                try
-                    {
-
-
-                    cidadeDestino = xdoc2.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "locality").Parent.Element("long_name").Value;
-
-                    }
-
-                catch
-                    {
-
-                    cidadeDestino = "";
-
-                    }
-
-
-                var numeroDestino = "";
-
-                try
-                    {
-
-                    numeroDestino = xdoc2.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "street_number").Parent.Element("long_name").Value;
-
-
-                    }
-                catch
-                    {
-
-                    numeroDestino = "";
-
-
-                    }
-
-
-
-                var bairroDestino = "";
-
-                try
-                    {
-                    bairroDestino = xdoc2.Descendants("address_component").Descendants("type").FirstOrDefault(x => x.Value == "route").Parent.Element("long_name").Value;
-
-
-                    }
-                catch
-                    {
-
-                    bairroDestino = "";
-
-
-                    }
-
-
-
-                XElement result2 = xdoc2.Element("PlaceDetailsResponse").Element("result");
-                XElement name2 = result2.Element("name");
-                var logradouroDestino = name2.Value;
-
-
-
-                await Navigation.PushAsync(new ChamadaPage(logradouroOrigem, bairroOrigem, cepOrigem, cidadeOrigem, numeroOrigem, logradouroDestino, bairroDestino, cepDestino, cidadeDestino, numeroDestino, minutos, kms));
-
-
-                }
-
+            get { return (ICommand)GetValue(CalculateCommandProperty); }
+            set { SetValue(CalculateCommandProperty, value); }
             }
 
-        Xamarin.Essentials.Location location = null;
+        public static readonly BindableProperty UpdateCommandProperty =
+          BindableProperty.Create(nameof(UpdateCommand), typeof(ICommand), typeof(ViagensPage), null, BindingMode.TwoWay);
 
+        public ICommand UpdateCommand
+            {
+            get { return (ICommand)GetValue(UpdateCommandProperty); }
+            set { SetValue(UpdateCommandProperty, value); }
+            }
 
         public ViagensPage()
-
             {
-
-
-
             InitializeComponent();
+            CalculateCommand = new Command<List<Xamarin.Forms.GoogleMaps.Position>>(Calculate);
+            UpdateCommand = new Command<Xamarin.Forms.GoogleMaps.Position>(Update);
+            GetActualLocationCommand = new Command(async () => await GetActualLocation());
+           // AddMapStyle();
+            }
 
+      
+         
+
+        async void Update(Xamarin.Forms.GoogleMaps.Position position)
+            {
+            if (map.Pins.Count == 1 && map.Polylines != null && map.Polylines?.Count > 1)
+                return;
+
+            var cPin = map.Pins.FirstOrDefault();
+
+            if (cPin != null)
+                {
+                cPin.Position = new Position(position.Latitude, position.Longitude);
+                cPin.Icon = BitmapDescriptorFactory.FromView(new Image() { Source = "ic_taxi.png", WidthRequest = 25, HeightRequest = 25 });
+
+                await map.MoveCamera(CameraUpdateFactory.NewPosition(new Position(position.Latitude, position.Longitude)));
+                var previousPosition = map?.Polylines?.FirstOrDefault()?.Positions?.FirstOrDefault();
+                map.Polylines?.FirstOrDefault()?.Positions?.Remove(previousPosition.Value);
+                }
+            else
+                {
+                //END TRIP
+                map.Polylines?.FirstOrDefault()?.Positions?.Clear();
+
+
+                }
 
 
             }
 
+        void Calculate(List<Xamarin.Forms.GoogleMaps.Position> list)
+            {
+            searchLayout.IsVisible = false;
+            stopRouteButton.IsVisible = true;
+            map.Polylines.Clear();
+            var polyline = new Xamarin.Forms.GoogleMaps.Polyline();
+            foreach (var p in list)
+                {
+                polyline.Positions.Add(p);
 
+                }
+            map.Polylines.Add(polyline);
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(polyline.Positions[0].Latitude, polyline.Positions[0].Longitude), Xamarin.Forms.GoogleMaps.Distance.FromMiles(0.50f)));
 
-        protected async override void OnAppearing()
+            var pin = new Xamarin.Forms.GoogleMaps.Pin
+                {
+                Type = PinType.Place,
+                Position = new Position(polyline.Positions.First().Latitude, polyline.Positions.First().Longitude),
+                Label = "First",
+                Address = "First",
+                Tag = string.Empty,
+                Icon = BitmapDescriptorFactory.FromView(new Image() { Source = "ic_taxi.png", WidthRequest = 25, HeightRequest = 25 })
+
+                };
+            map.Pins.Add(pin);
+            var pin1 = new Xamarin.Forms.GoogleMaps.Pin
+                {
+                Type = PinType.Place,
+                Position = new Position(polyline.Positions.Last().Latitude, polyline.Positions.Last().Longitude),
+                Label = "Last",
+                Address = "Last",
+                Tag = string.Empty
+                };
+            map.Pins.Add(pin1);
+            }
+
+        public async void OnEnterAddressTapped(object sender, EventArgs e)
+            {
+            await Navigation.PushAsync(new SearchPlacePage() { BindingContext = this.BindingContext }, false);
+
+            }
+
+        public void Handle_Stop_Clicked(object sender, EventArgs e)
+            {
+            searchLayout.IsVisible = true;
+            stopRouteButton.IsVisible = false;
+            map.Polylines.Clear();
+            map.Pins.Clear();
+            }
+
+        //Center map in actual location 
+        protected override void OnAppearing()
             {
             base.OnAppearing();
-
-
-
-            if (Preferences.Get("Cadastrado", "default_value") == "true")
-
-
-
-                actInd.IsVisible = true;
-                actInd.IsRunning = true;
-
-            await GPS();
-
-            if (location == null)
-
-
-
-
-                {
-
-                Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new GPSPage()) };
-
-
-
-                }
-
-
-            else
-
-                {
-
-
-
-
-                // Preferences.Set("latitude", location.Latitude.ToString().Replace(",", "."));
-                string latitude = location.Latitude.ToString().Replace(",", ".");
-
-                //  Preferences.Set("longitude", location.Longitude.ToString().Replace(",", "."));
-
-                string longitude = location.Longitude.ToString().Replace(",", ".");
-                string address = "https://maps.googleapis.com/maps/api/geocode/xml?latlng="
-
-                 + latitude + "," + longitude + "&key=AIzaSyCXnSw7uj9P9oZIc_7c74peSmkmkYU1O5s";
-
-                WebRequest request = WebRequest.Create(address);
-                WebResponse response = await request.GetResponseAsync();
-                XDocument xdoc = XDocument.Load(response.GetResponseStream());
-
-                XElement result = xdoc.Element("GeocodeResponse").Element("result");
-                XElement locationElement = result.Element("formatted_address");
-                XElement placeidElement = result.Element("place_id");
-
-                //    Preferences.Set("origem", locationElement.Value);
-                string origem = locationElement.Value;
-
-                //    Preferences.Set("placeid", placeidElement.Value);
-                string placeid = placeidElement.Value;
-
-
-
-                Browser.Source = "http://fferreira-001-site3.gtempurl.com/Index.html?latitude="
-                + latitude + "&longitude="
-                + longitude + "&origem="
-                + origem
-                + "&placeid=" + placeid;
-
-                //  Browser.Reload();
-
-
-                actInd.IsVisible = false;
-                actInd.IsRunning = false;
-
-                }
-
+            GetActualLocationCommand.Execute(null);
             }
 
+        public static readonly BindableProperty GetActualLocationCommandProperty =
+            BindableProperty.Create(nameof(GetActualLocationCommand), typeof(ICommand), typeof(ViagensPage), null, BindingMode.TwoWay);
 
-
-
-
-        async Task GPS()
+        public ICommand GetActualLocationCommand
             {
+            get { return (ICommand)GetValue(GetActualLocationCommandProperty); }
+            set { SetValue(GetActualLocationCommandProperty, value); }
+            }
 
-
+        async Task GetActualLocation()
+            {
             try
-
                 {
+                var request = new GeolocationRequest(GeolocationAccuracy.High);
+                var location = await Geolocation.GetLocationAsync(request);
 
-                var request = new GeolocationRequest(GeolocationAccuracy.Best);
-                location = await Geolocation.GetLocationAsync(request);
+                if (location != null)
+                    {
+                    map.MoveToRegion(MapSpan.FromCenterAndRadius(
+                        new Position(location.Latitude, location.Longitude), Distance.FromMiles(0.3)));
+
+                    }
                 }
-
-            catch
-
+            catch (Exception ex)
                 {
-
-
+                await DisplayAlert("Error", "Unable to get actual location", "Ok");
                 }
-
             }
 
         }

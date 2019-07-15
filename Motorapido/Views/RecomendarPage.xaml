@@ -8,8 +8,8 @@
 
      <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
  
-    <Label Text="Gostou do nosso App?" FontSize="Medium" HorizontalTextAlignment="Center" />
-    <Label Text="Então compartilhe com seus amigos e familiares..." FontSize="Medium" HorizontalTextAlignment="Start" />
+    <Label Text="Gostou do nosso App?" HorizontalTextAlignment="Center" />
+    <Label Text="Então compartilhe com seus amigos e familiares..." HorizontalTextAlignment="Center" />
         
     <Button x:Name="share" Margin="5,5,5,5" Text="Compartilhar o App Motorapido" Command="{Binding OpenWebCommand}" />
         

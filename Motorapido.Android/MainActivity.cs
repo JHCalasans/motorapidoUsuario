@@ -10,6 +10,7 @@ using Plugin.CurrentActivity;
 using ImageCircle.Forms.Plugin.Droid;
 using Com.OneSignal;
 using Plugin.Permissions;
+using Xamarin.Forms.GoogleMaps.Android;
 
 namespace Motorapido.Droid
     {
@@ -49,6 +50,17 @@ namespace Motorapido.Droid
             ImageCircleRenderer.Init();
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
+
+            // Override default BitmapDescriptorFactory by your implementation. 
+
+            var platformConfig = new PlatformConfig
+                {
+                BitmapDescriptorFactory = new CachingNativeBitmapDescriptorFactory()
+                };
+
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState, platformConfig); // initialize for Xamarin.Forms.GoogleMaps
+
 
             LoadApplication(new App());
             }

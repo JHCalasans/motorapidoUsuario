@@ -15,7 +15,7 @@ namespace Motorapido.Models
 
             public string origem { get; set; }
 
-            public float valor { get; set; }
+            public string valor { get; set; }
 
            }
         }

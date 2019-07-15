@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Motorapido.Views
     {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SairPage : ContentPage
         {
         public SairPage()
@@ -32,7 +34,9 @@ namespace Motorapido.Views
 
             Preferences.Set("UserName", "default_value");
 
-       
+            Preferences.Set("UserId", "default_value");
+
+
             Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new LoginPage()) };
 
 

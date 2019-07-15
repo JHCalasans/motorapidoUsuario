@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using Plugin.Media;
 using Com.OneSignal;
 using Device = Xamarin.Forms.Device;
+using Motorapido.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Motorapido
@@ -28,6 +29,7 @@ namespace Motorapido
 
             CrossMedia.Current.Initialize();
 
+            GoogleMapsApiService.Initialize(Constants.GoogleMapsApiKey);
 
 
             OneSignal.Current.StartInit("0df18d37-de4c-4705-87cb-c1d2f3c789d1")

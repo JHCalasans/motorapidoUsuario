@@ -11,10 +11,11 @@ using Android.Locations;
 #endif
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-
+using Xamarin.Forms.Xaml;
 
 namespace Motorapido.Views
     {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GPSPage : ContentPage
         {
         public GPSPage()

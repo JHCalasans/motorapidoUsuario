@@ -10,27 +10,27 @@
       <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
 
 
-            <Label Text="Nome" FontSize="Medium" />
-            <Entry x:Name="Nome" Text="" FontSize="Medium" />
-            <Label x:Name="NomeObrigatório" Text="Nome obrigatório" FontSize="Medium" TextColor="Red" IsVisible="false" />
+            <Label Text="Nome" />
+            <Entry x:Name="Nome" Text="" />
+            <Label x:Name="NomeObrigatório" Text="Nome obrigatório" TextColor="Red" IsVisible="false" />
             
-            <Label Text="e-Mail" FontSize="Medium" />
-            <Entry x:Name="Email" Text="" FontSize="Medium" />
-            <Label x:Name="EmailObrigatório" Text="Email obrigatório" FontSize="Medium" TextColor="Red" IsVisible="false" />
+            <Label Text="e-Mail" />
+            <Entry x:Name="Email" Text="" />
+            <Label x:Name="EmailObrigatório" Text="Email obrigatório" TextColor="Red" IsVisible="false" />
            
             
-            <Label Text="Telefone" FontSize="Medium" />
-            <Entry x:Name="Telefone" Text="" FontSize="Medium" />
-            <Label x:Name="TelefoneObrigatório" Text="Telefone obrigatório" FontSize="Medium" TextColor="Red" IsVisible="false" />
+            <Label Text="Telefone" />
+            <Entry x:Name="Telefone" Text="" />
+            <Label x:Name="TelefoneObrigatório" Text="Telefone obrigatório" TextColor="Red" IsVisible="false" />
 
                 
-            <Label Text="Senha" FontSize="Medium" />
-            <Entry IsPassword="true" x:Name="Senha" Text="" FontSize="Medium" Margin="0" />
-            <Label x:Name="SenhaObrigatório" Text="Senha obrigatória" FontSize="Medium" TextColor="Red" IsVisible="false" />
+            <Label Text="Senha" />
+            <Entry IsPassword="true" x:Name="Senha" Text="" Margin="0" />
+            <Label x:Name="SenhaObrigatório" Text="Senha obrigatória" TextColor="Red" IsVisible="false" />
 
    
          
-            <Button x:Name="pickPhoto" Text="Escolher foto" Clicked="pickPhoto_Clicked"/>
+            <Button x:Name="pickPhoto" Margin="5,5,5,5" Text="Escolher foto" Clicked="pickPhoto_Clicked"/>
       
          
             <controls:CircleImage Source="my_pick.png" x:Name="image" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />

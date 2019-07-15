@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Motorapido.Views.GPSPage" Title="Definições GPS">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="O GPS é necessário para a sua Localização..." x:Name="semGPS">
+        <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
+            <Label Text="O GPS é necessário para a sua Localização..." x:Name="semGPS" HorizontalOptions="CenterAndExpand">
             </Label>
-            <Button Text="Definições" x:Name="Definições" Clicked="Definições_Clicked">
+            <Button Text="Definições" Margin="5,5,5,5" x:Name="Definições" Clicked="Definições_Clicked">
             </Button>
         </StackLayout>
     </ContentPage.Content>
