@@ -48,12 +48,94 @@ namespace Motorapido.Views
         async void Cadastrar_Clicked(object sender, System.EventArgs e)
 
             {
+            bool flag = true;
 
 
-            //  Preferences.Set("Cadastrado", "true");
+            if (string.IsNullOrEmpty(Nome.Text))
 
-            //   Application.Current.MainPage = new MainPage { Detail = new NavigationPage(new ViagensPage()) };
+                {
 
+                NomeObrigatório.IsVisible = true;
+
+                flag = false;
+
+                }
+            else
+                {
+
+
+                NomeObrigatório.IsVisible = false;
+
+
+
+                }
+
+
+            if (string.IsNullOrEmpty(Email.Text))
+
+                {
+
+                EmailObrigatório.IsVisible = true;
+
+                flag = false;
+
+                }
+
+            else
+                {
+
+
+                EmailObrigatório.IsVisible = false;
+
+
+
+                }
+
+            if (string.IsNullOrEmpty(Telefone.Text))
+
+                {
+
+                TelefoneObrigatório.IsVisible = true;
+
+                flag = false;
+
+                }
+
+            else
+                {
+
+
+                TelefoneObrigatório.IsVisible = false;
+
+
+
+                }
+
+            if (string.IsNullOrEmpty(Senha.Text))
+
+                {
+
+                SenhaObrigatório.IsVisible = true;
+
+                flag = false;
+
+                }
+
+            else
+                {
+
+
+                SenhaObrigatório.IsVisible = false;
+
+
+
+                }
+
+
+            if (!flag) return;
+
+
+         
 
             Cadastro data = new Cadastro
                 {

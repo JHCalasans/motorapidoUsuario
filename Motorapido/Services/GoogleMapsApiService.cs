@@ -43,8 +43,7 @@ namespace Motorapido.Services
                 {
                     var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                    Console.WriteLine("------------" + json);
-
+             
                     if (!string.IsNullOrWhiteSpace(json))
                     {
 

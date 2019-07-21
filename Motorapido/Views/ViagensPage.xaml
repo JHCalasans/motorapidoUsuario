@@ -5,14 +5,15 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              x:Class="Motorapido.ViagensPage" 
              CalculateCommand="{Binding CalculateRouteCommand}"
-             UpdateCommand="{Binding UpdatePositionCommand}" >
+             UpdateCommand="{Binding UpdatePositionCommand}" Title="Viagens" >
     <ContentPage.BindingContext>
         <vm:ViagensViewModel/>
     </ContentPage.BindingContext>
     <Grid>
          <maps:Map x:Name="map"
                     VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand"/>
+                    HorizontalOptions="FillAndExpand"
+                    />
         
          <Image Source="ic_location_red.png"
                  IsVisible="{Binding IsRouteNotRunning}"
@@ -26,7 +27,7 @@
                         VerticalOptions="Start"
                         Padding="10"
                         x:Name="searchLayout"
-                        Margin="30,50,30,0">
+                        Margin="30,60,30,0">
                        <Image Source="ic_search"
                               HeightRequest="15"
                               WidthRequest="15"/>
@@ -42,7 +43,7 @@
            </StackLayout>
         
            <Button Text="Choose Pickup"
-                   Margin="40"
+                   Margin="30,0,30,170"
                    IsVisible="{Binding IsRouteNotRunning}"
                    Clicked="OnEnterAddressTapped"
                    Command="{Binding GetLocationNameCommand}"
@@ -55,7 +56,7 @@
                    HorizontalOptions="FillAndExpand"/>
         
            <Button Text="Stop"
-                   Margin="40"
+                   Margin="30,0,30,170"
                    Clicked="Handle_Stop_Clicked"
                    Command="{Binding StopRouteCommand}"
                    IsVisible="false"
@@ -65,5 +66,19 @@
                    FontSize="17"
                    VerticalOptions="EndAndExpand"
                    HorizontalOptions="FillAndExpand"/>
+        
+             
+           <Button Text="Chamada"
+                   Margin="30,0,30,110"
+                   Clicked="Chamada_Clicked"
+                   IsVisible="false"
+                   x:Name="Chamada"
+                   BackgroundColor="Green"
+                   TextColor="White"
+                   FontSize="17"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="FillAndExpand"/>
     </Grid>
 </ContentPage>
+        
+  

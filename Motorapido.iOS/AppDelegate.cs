@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
+using Plugin.Geolocator;
 using UIKit;
 using Xamarin.Essentials;
 
@@ -70,13 +71,20 @@ namespace Motorapido.iOS
 
             global::Xamarin.Forms.Forms.Init();
 
+
             Xamarin.FormsGoogleMaps.Init(Constants.GoogleMapsApiKey);
+
+            var current = CrossGeolocator.Current;
+
 
             ImageCircleRenderer.Init();
 
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+
+
+
             }
 
 

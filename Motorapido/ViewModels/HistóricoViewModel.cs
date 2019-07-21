@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Text;
 using System.Collections.Generic;
 using Xamarin.Essentials;
+using System.Globalization;
 
 namespace Motorapido.ViewModels
     {
@@ -135,12 +136,14 @@ namespace Motorapido.ViewModels
                         try
 
                             {
-                            historico.valor = output[i].valor;
+                            historico.valor = output[i].valor.ToString("C2", CultureInfo.CreateSpecificCulture("pt-BR"));
                             }
 
                         catch
                             {
                             historico.valor = "0";
+
+
                             }
 
                         Items.Add(historico);

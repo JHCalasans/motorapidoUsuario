@@ -5,18 +5,23 @@
         <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
             
             
-               <Label Text="Logradouro Origem" />
-               <Label x:Name="LogradouroOrigem" LineBreakMode="WordWrap" />
+               <Label Text="Latitude Origem" />
+               <Label x:Name="LatitudeOrigem" LineBreakMode="WordWrap" />
             
-               <Label Text="Origem" />
-               <Label x:Name="Origem" LineBreakMode="WordWrap" />
+               
+               <Label Text="Longitude Origem" />
+               <Label x:Name="LongitudeOrigem" LineBreakMode="WordWrap" />
             
-               <Label Text="Logradouro Destino" />
-               <Label x:Name="LogradouroDestino" LineBreakMode="WordWrap" />
+                  
+               <Label Text="Latitude Destino" />
+               <Label x:Name="LatitudeDestino" LineBreakMode="WordWrap" />
             
-               <Label Text="Destino" />
-               <Label x:Name="Destino" LineBreakMode="WordWrap" />
+               
+               <Label Text="Longitude Destino" />
+               <Label x:Name="LongitudeDestino" LineBreakMode="WordWrap" />
             
+               
+                
                <Label Text="Minutos" />
                <Label x:Name="Minutos" LineBreakMode="WordWrap" />
             

@@ -28,11 +28,16 @@ namespace Motorapido.Views
                 {
                 FocusOriginCommand = new Command(OnOriginFocus);
                 }
+
             }
+
+     
 
         void OnOriginFocus()
             {
+
             destinationEntry.Focus();
+            destinationEntry.Text = "";
             }
         }
     }

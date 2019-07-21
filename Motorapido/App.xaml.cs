@@ -99,7 +99,7 @@ namespace Motorapido
 
             try
                 {
-                var request = new GeolocationRequest(GeolocationAccuracy.Best);
+                var request = new GeolocationRequest(GeolocationAccuracy.High);
                 location = await Geolocation.GetLocationAsync(request);
                 }
 

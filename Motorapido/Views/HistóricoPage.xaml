@@ -45,7 +45,7 @@
                                 FontSize="16"  />
 
                                         
-                          <Label Text="{Binding valor, StringFormat='Valor: {0}' }"
+                          <Label Text="{Binding valor, StringFormat='Valor: R$ {0}' }"
                                 LineBreakMode="WordWrap" 
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="16"  />

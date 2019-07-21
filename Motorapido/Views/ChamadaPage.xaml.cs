@@ -7,56 +7,33 @@ using Motorapido.ViewModels;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Motorapido.Views
     {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChamadaPage : ContentPage
         {
-        public ChamadaPage(string logradouroOrigem, string bairroOrigem, string cepOrigem, string cidadeOrigem, string numeroOrigem, string logradouroDestino, string bairroDestino, string cepDestino, string cidadeDestino, string numeroDestino, string minutos, string kms)
+        public ChamadaPage(string latitudeOrigem, string longitudeOrigem, string latitudeDestino, string longitudeDestino, string logradouroOrigem, string bairroOrigem, string cepOrigem, string cidadeOrigem, string numeroOrigem, string logradouroDestino, string bairroDestino, string cepDestino, string cidadeDestino, string numeroDestino, string minutos, string kms)
             {
 
             InitializeComponent();
 
 
-            if (string.IsNullOrEmpty(numeroOrigem))
 
-                {
-                Origem.Text = bairroOrigem + numeroOrigem + " " + cepOrigem + " " + cidadeOrigem;
+            LatitudeOrigem.Text = latitudeOrigem;
 
-
-                }
-
-            else
-                {
-                Origem.Text = bairroOrigem + " " + numeroOrigem + ", " + cepOrigem + " " + cidadeOrigem;
+            LongitudeOrigem.Text = longitudeOrigem;
 
 
+            LatitudeDestino.Text = latitudeDestino;
 
-                }
-
-
-
-            if (string.IsNullOrEmpty(numeroDestino))
-
-                {
-                Destino.Text = bairroDestino + numeroDestino + " " + cepDestino + " " + cidadeDestino;
+            LongitudeDestino.Text = longitudeDestino;
 
 
-                }
+            Minutos.Text = minutos;
 
-            else
-                {
-                Destino.Text = bairroDestino + " " + numeroDestino + ", " + cepDestino + " " + cidadeDestino;
+            Kms.Text =  kms;
 
-
-
-                }
-
-            LogradouroOrigem.Text = logradouroOrigem;
-            LogradouroDestino.Text = logradouroDestino;
-
+      
 
             Minutos.Text = minutos;
             Kms.Text = kms;
@@ -83,16 +60,16 @@ namespace Motorapido.Views
                 logradouroOrigem = "teste",
                 numeroOrigem = "teste",
                 complementoOrigem = "teste",
-                latitudeOrigem = "-10.940531",
-                longitudeOrigem = "-37.057670",
+                latitudeOrigem = "-10.916096",
+                longitudeOrigem = "-37.048814",
                 cepDestino = "teste",
                 bairroDestino = "teste",
                 cidadeDestino = "teste",
                 logradouroDestino = "teste",
                 numeroDestino = "teste",
                 complementoDestino = "teste",
-                latitudeDestino = "-10.921407",
-                longitudeDestino = "-37.068590",
+                latitudeDestino = "-10.016096",
+                longitudeDestino = "-37.148814",
                 observacao = Observação.Text
 
 
@@ -110,19 +87,17 @@ namespace Motorapido.Views
 
             var client = new HttpClient();
 
-        
-
+    
             try
 
                 {
-
                 response = await client.PostAsync(uri, content);
-
 
 
                 }
 
             catch
+
                 {
 
 
@@ -180,7 +155,8 @@ namespace Motorapido.Views
                 }
 
             else
-                Console.WriteLine("------------------------>" + response.ReasonPhrase + response.StatusCode);
+
+                Console.WriteLine("------------------------>" + response.ReasonPhrase + " " + response.StatusCode);
 
             }
         }
