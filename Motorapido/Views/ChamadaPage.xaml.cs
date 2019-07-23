@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using Motorapido.Models;
@@ -7,9 +6,12 @@ using Motorapido.ViewModels;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Motorapido.Views
     {
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChamadaPage : ContentPage
         {
         public ChamadaPage(string latitudeOrigem, string longitudeOrigem, string latitudeDestino, string longitudeDestino, string logradouroOrigem, string bairroOrigem, string cepOrigem, string cidadeOrigem, string numeroOrigem, string logradouroDestino, string bairroDestino, string cepDestino, string cidadeDestino, string numeroDestino, string minutos, string kms)

@@ -10,6 +10,8 @@
         <vm:ViagensViewModel/>
     </ContentPage.BindingContext>
     <Grid>
+       
+        
          <maps:Map x:Name="map"
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
@@ -27,7 +29,7 @@
                         VerticalOptions="Start"
                         Padding="10"
                         x:Name="searchLayout"
-                        Margin="30,60,30,0">
+                        Margin="20,60,20,0">
                        <Image Source="ic_search"
                               HeightRequest="15"
                               WidthRequest="15"/>
@@ -43,7 +45,7 @@
            </StackLayout>
         
            <Button Text="Choose Pickup"
-                   Margin="30,0,30,170"
+                   Margin="20,0,20,110"
                    IsVisible="{Binding IsRouteNotRunning}"
                    Clicked="OnEnterAddressTapped"
                    Command="{Binding GetLocationNameCommand}"
@@ -56,7 +58,7 @@
                    HorizontalOptions="FillAndExpand"/>
         
            <Button Text="Stop"
-                   Margin="30,0,30,170"
+                   Margin="20,0,20,110"
                    Clicked="Handle_Stop_Clicked"
                    Command="{Binding StopRouteCommand}"
                    IsVisible="false"
@@ -69,7 +71,7 @@
         
              
            <Button Text="Chamada"
-                   Margin="30,0,30,110"
+                   Margin="20,0,20,110"
                    Clicked="Chamada_Clicked"
                    IsVisible="false"
                    x:Name="Chamada"

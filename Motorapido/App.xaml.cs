@@ -1,18 +1,13 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
-using System.Net;
-using System.Xml;
 using Motorapido.Views;
-using System.Xml.Linq;
 using Plugin.Media;
 using Com.OneSignal;
-using Device = Xamarin.Forms.Device;
 using Motorapido.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]

@@ -224,6 +224,8 @@ namespace Motorapido.ViewModels
         public void StopRoute()
             {
             HasRouteRunning = false;
+            MyMapa = false;
+
             }
 
         public async Task GetPlacesByName(string placeText)

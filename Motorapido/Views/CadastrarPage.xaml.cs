@@ -1,16 +1,11 @@
 ﻿using System;
 using Motorapido.Models;
-using Motorapido.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using System.Text;
 using System.Net.Http;
 using Xamarin.Essentials;
-using Plugin.Media;
-using System.Collections.Generic;
-using Plugin.FileUploader;
-using Plugin.FileUploader.Abstractions;
 using System.IO;
 using Com.OneSignal;
 using System.Security.Cryptography;

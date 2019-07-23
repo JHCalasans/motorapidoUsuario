@@ -11,7 +11,7 @@
     <Label Text="Gostou do nosso App?" HorizontalTextAlignment="Center" />
     <Label Text="Então compartilhe com seus amigos e familiares..." HorizontalTextAlignment="Center" />
         
-    <Button x:Name="share" Margin="5,5,5,5" Text="Compartilhar o App Motorapido" Command="{Binding OpenWebCommand}" />
+    <Button x:Name="share" Margin="20,5,20,5" Padding="0" BackgroundColor="DodgerBlue" TextColor="White" Text="Compartilhar o App Motorapido" Command="{Binding OpenWebCommand}" />
         
     
         </StackLayout>

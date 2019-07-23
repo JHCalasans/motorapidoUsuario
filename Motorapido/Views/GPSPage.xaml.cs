@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 using Xamarin.Forms;
 
 
@@ -10,7 +8,6 @@ using Android.Locations;
 
 #endif
 using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using Xamarin.Forms.Xaml;
 
 namespace Motorapido.Views

@@ -12,13 +12,12 @@ using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
-using Position = Plugin.Geolocator.Abstractions.Position;
+using Xamarin.Forms.Xaml;
 
 namespace Motorapido
     {
 
-
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViagensPage : ContentPage
         {
         public static readonly BindableProperty CalculateCommandProperty =
@@ -100,6 +99,11 @@ namespace Motorapido
         async void Chamada_Clicked(object sender, System.EventArgs e)
             {
 
+
+            stopRouteButton.IsVisible = true;
+            Chamada.IsVisible = false;
+
+
             var vm = BindingContext as ViagensViewModel;
 
 
@@ -128,10 +132,18 @@ namespace Motorapido
 
             map.UiSettings.MyLocationButtonEnabled = true;
 
-        
-         
+            map.MyLocationButtonClicked += tomarPosicao;
+
+
+
             }
 
+        public async void tomarPosicao(object sender, EventArgs e)
+            {
+
+            await GetActualLocation();
+
+            }
 
         void AddMapStyle()
             {
@@ -189,11 +201,11 @@ var resourcePrefix = "Motorapido.Droid.";
             }
 
 
-        void Calculate(List<Xamarin.Forms.GoogleMaps.Position> list)
+        async void Calculate(List<Xamarin.Forms.GoogleMaps.Position> list)
             {
           
             searchLayout.IsVisible = true;
-            stopRouteButton.IsVisible = true;
+            stopRouteButton.IsVisible = false;
             Chamada.IsVisible = true; 
 
             map.Polylines.Clear();
@@ -264,6 +276,8 @@ var resourcePrefix = "Motorapido.Droid.";
 
             map.MoveToRegion(MapSpan.FromPositions(list).WithZoom(0.85));
 
+            await StartListening();
+
             }
 
         public async void OnEnterAddressTapped(object sender, EventArgs e)
@@ -293,16 +307,16 @@ var resourcePrefix = "Motorapido.Droid.";
             }
 
         //Center map in actual location 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
             {
    
             base.OnAppearing();
 
-   
+      
+               
             GetActualLocationCommand.Execute(null);
 
-            await StartListening();
-
+      
 
 
             }
@@ -318,6 +332,9 @@ var resourcePrefix = "Motorapido.Droid.";
 
         async Task GetActualLocation()
             {
+
+     
+
             try
                 {
                 var request = new GeolocationRequest(GeolocationAccuracy.High);
@@ -330,6 +347,7 @@ var resourcePrefix = "Motorapido.Droid.";
                     map.MoveToRegion(MapSpan.FromCenterAndRadius(
                         new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude), Distance.FromMiles(0.3)));
 
+            
                     }
                 }
             catch (Exception ex)

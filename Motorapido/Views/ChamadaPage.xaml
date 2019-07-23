@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Motorapido.Views.ChamadaPage" Title="Chamada" >
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
+        <StackLayout Orientation="Vertical" Margin="20,5,20,5" Padding="10" Spacing="10">
             
             
                <Label Text="Latitude Origem" />
@@ -33,7 +33,7 @@
          
             <Entry x:Name="Observação" Placeholder="" />
             
-            <Button x:Name="Chamar" Margin="5,5,5,5" Text="Chamar" Clicked="Chamar_Clicked" />
+            <Button x:Name="Chamar" Margin="0,5,0,5" BackgroundColor="Green" TextColor="White" Text="Chamar" Clicked="Chamar_Clicked" />
         
         
         </StackLayout>
